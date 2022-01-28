@@ -1,6 +1,7 @@
 import { Header, TableContainer } from "components";
 import { ITodo } from "components/Containers/todo-list/TodoList.model";
 import { useFetch } from "global/hooks";
+import { useEffect } from "react";
 
 const initialTodos: ITodo[] = [
   {
@@ -32,8 +33,13 @@ const initialTodos: ITodo[] = [
 
 const Main = () => {
   const { data, isPending } = useFetch(
-    "https://jsonplaceholder.typicode.com/todos/10"
+    "https://jsonplaceholder.typicode.com/todos",
+    { type: "GET" }
   );
+
+  useEffect(() => {
+    console.log("data: ", data);
+  }, [data]);
 
   return (
     <>
